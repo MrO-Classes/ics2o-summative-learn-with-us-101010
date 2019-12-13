@@ -8,7 +8,9 @@ function setup() {
 function draw() {
   background(100, 150, 200);
   image(img, 75, 25, 250, 150);
-
+  
+  var sceneNum = 0;
+  
   //Buttons\/
 
   fill(0, 110, 255);
@@ -30,22 +32,32 @@ function draw() {
   text("Instructions", 275, 225);
   text("Controls", 45, 325);
   text("About Us", 270, 325);
-
+  
+  
   //Debug
   text("X = " + mouseX + ", Y = " + mouseY, mouseX, mouseY);
-
+  
   //'Click to Play' Button
   if (mouseIsPressed && mouseX >= 25 && mouseX <= 150 && mouseY >= 200 && mouseY <= 250) {
     print("Working-Click-to-Play");
+    sceneNum = 1;
   }
 
   //'Instructions' Button
   if (mouseIsPressed && mouseX >= 250 && mouseX <= 375 && mouseY >= 200 && mouseY <= 250) {
     print("Working-Instructions");
+    
   }
 
   //'Controls' Button
   if (mouseIsPressed && mouseX >= 25 && mouseX <= 150 && mouseY >= 300 && mouseY <= 350) {
     print("Working-Controls");
+    
   }
+  
+  //'About Us' Button
+  if (mouseIsPressed && mouseX >= 250 && mouseX <= 375 && mouseY >= 300 && mouseY <= 350) {
+    print("Working-About-Us");
+  }
+  
 }
