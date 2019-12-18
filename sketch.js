@@ -1,38 +1,55 @@
 let img;
+let Sparkles;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(600, 400);
+  Sparkles = new Character();
   img = loadImage('art/SplashScreen.jpg')
 }
 
 function draw() {
   background(255, 0, 125);
-  image(img, 75, 25, 250, 150);
+  image(img, 172, 25, 250, 150);
+  
+  if(sceneNum === 1) {
+translate(-Sparkles.pos.x + 50, 0);
+
+  Sparkles.update();
+  Sparkles.edges();
+  Sparkles.display();
+
+  var gravity = createVector(0, 0.1);
+  Sparkles.applyForce(gravity);
+  textSize(15);
+  fill(0, 0, 0);
+  text("SPARKLES", Sparkles.pos.x + 5, Sparkles.pos.y - 20);
+}
+
   
   //Buttons\/
 
   fill(0, 110, 255);
 
   //'Click to Play' Button
-  rect(25, 200, 125, 50);
+  rect(185, 200, 225, 50);
 
   //'Instructions' Button
-  rect(250, 200, 125, 50);
+  rect(410, 300, 150, 50);
 
   //'Controls' Button
-  rect(25, 300, 125, 50);
+  rect(35, 300, 150, 50);
 
   //'About Us' Button
-  rect(250, 300, 125, 50);
+  rect(240, 300, 125, 50);
 
   fill(0, 0, 0);
-  text("Click to Play", 50, 225);
-  text("Instructions", 280, 225);
-  text("Controls", 60, 325);
-  text("About Us", 285, 325);
+  text("Click to Play", 265, 225);
+  text("Instructions", 450, 325);
+  text("Controls", 80, 325);
+  text("About Us", 275, 325);
   
   //Debug
-  text("X = " + mouseX + ", Y = " + mouseY, mouseX, mouseY);
+  //text("X = " + mouseX + ", Y = " + mouseY, mouseX, mouseY);
 
   drawScene();
   
@@ -42,28 +59,28 @@ function draw() {
   mouseClicked = function() {
     
   //Click to Play/Instructions/Controls/About Us
-  if (mouseX >= 25 && mouseX <= 150 && mouseY >= 200 && mouseY <= 250 && sceneNum == 0) {
-    print("Working-Click-to-Play");
+  if (mouseX >= 185 && mouseX <= 410 && mouseY >= 200 && mouseY <= 250 && sceneNum == 0) {
+    //print("Working-Click-to-Play");
     sceneNum = 1;
     
   } 
-    else if (mouseX >= 250 && mouseX <= 375 && mouseY >= 200 && mouseY <= 250 && sceneNum == 0) {
-    print("Working-Instructions");
+    else if (mouseX >= 410 && mouseX <= 560 && mouseY >= 300 && mouseY <= 350 && sceneNum == 0) {
+    //print("Working-Instructions");
     sceneNum = 2;
     
   } 
-    else if (mouseX >= 25 && mouseX <= 150 && mouseY >= 300 && mouseY <= 350 && sceneNum == 0) {
-    print("Working-Controls");
+    else if (mouseX >= 35 && mouseX <= 185 && mouseY >= 300 && mouseY <= 350 && sceneNum == 0) {
+    //print("Working-Controls");
     sceneNum = 3;
     
   } 
-    else if (mouseX >= 250 && mouseX <= 375 && mouseY >= 300 && mouseY <= 350 && sceneNum == 0) {
-    print("Working-About-Us");
+    else if (mouseX >= 240 && mouseX <= 365 && mouseY >= 300 && mouseY <= 350 && sceneNum == 0) {
+    //print("Working-About-Us");
     sceneNum = 4;
     
   }
-    else if(mouseX >= 325 && mouseX <= 380 && mouseY >= 22 && mouseY <= 55 && sceneNum > 0) {
-    print("Working-Back");
+    else if(mouseX >= 525 && mouseX <= 580 && mouseY >= 22 && mouseY <= 55 && sceneNum > 1) {
+    //print("Working-Back");
     sceneNum = 0;
     textSize(12);
       
@@ -75,21 +92,30 @@ function draw() {
 
   var drawBackButton = function() {
     textSize(12);
-    rect(325, 25, 55, 30);
+    rect(525, 25, 55, 30);
     fill(255, 255, 255);
-    text("BACK", 335, 45);
+    text("BACK", 535, 45);
   }
+  
+  // FOR LATER
+  // var drawExitButton = function() {
+  //   textSize(12);
+  //   rect(525, 25, 55, 30);
+  //   fill(255, 255, 255);
+  //   text("EXIT", 535, 45);
+  // }
   
   //To draw scenes - Click to Play/Instructions/Controls/About Us
   var drawScene = function() {
     if (sceneNum === 1) {
-      background(255, 0, 0);
-      print("Working-Scene-1");
-      drawBackButton();
+      //print("Working-Scene-1");
+      textSize(35);
+      text("Level 1", 20, 45)
+      text("Lives: " + Sparkles.lives, 20, 85);
     }
       else if (sceneNum === 2) {
       background(0, 255, 0);
-      print("Working-Scene-2");
+      //print("Working-Scene-2");
       drawBackButton();
       fill(0, 0, 0);
       textSize(60);
@@ -120,7 +146,7 @@ function draw() {
     }
       else if (sceneNum === 3) {
       background(0, 0, 255);
-      print("Working-Scene-3");
+      //print("Working-Scene-3");
       drawBackButton();
       fill(0, 0, 0);
       textSize(60);
@@ -128,7 +154,7 @@ function draw() {
     }
       else if (sceneNum === 4) {
       background(255, 255, 255);
-      print("Working-Scene-4");
+      //print("Working-Scene-4");
       drawBackButton();
       fill(0, 0, 0);
       textSize(60);
