@@ -4,12 +4,25 @@ let Sparkles;
 function setup() {
   createCanvas(600, 400);
   Sparkles = new Character();
+
   img = loadImage('art/SplashScreen.jpg')
+
+}
+
+function keyPressed() {
+  if (key == ' ') {
+    var jump = createVector(0, -3);
+    Sparkles.applyForce(jump);
+  }
+
 }
 
 function draw() {
   background(255, 0, 125);
+  
+  if (sceneNum === 0) {
   image(img, 172, 25, 250, 150);
+  }
   
   if(sceneNum === 1) {
 translate(-Sparkles.pos.x + 50, 0);
@@ -22,9 +35,7 @@ translate(-Sparkles.pos.x + 50, 0);
   Sparkles.applyForce(gravity);
   textSize(15);
   fill(0, 0, 0);
-  text("SPARKLES", Sparkles.pos.x + 5, Sparkles.pos.y - 20);
 }
-
   
   //Buttons\/
 
@@ -52,6 +63,10 @@ translate(-Sparkles.pos.x + 50, 0);
   //text("X = " + mouseX + ", Y = " + mouseY, mouseX, mouseY);
 
   drawScene();
+  
+//   if (sceneNum === 1) {
+//   drawWinBone();
+//   }
   
 }
 
@@ -85,7 +100,7 @@ translate(-Sparkles.pos.x + 50, 0);
     textSize(12);
       
   }
-    
+
   }
 
   var sceneNum = 0;
@@ -97,6 +112,19 @@ translate(-Sparkles.pos.x + 50, 0);
     text("BACK", 535, 45);
   }
   
+   var drawWinBone = function() {
+    fill(255, 255, 255);
+    rect(1150, 75, 75, 15);
+    fill(0, 0, 0);
+    text("BONE", 1150, 75);
+  }
+   
+   var drawEnemyCat = function() {
+    rect(945, height * 0.5, width/10, height * 0.040);
+    fill(0, 0, 0);
+    text("CAT", 945, height * 0.5);
+   }
+   
   // FOR LATER
   // var drawExitButton = function() {
   //   textSize(12);
@@ -109,9 +137,12 @@ translate(-Sparkles.pos.x + 50, 0);
   var drawScene = function() {
     if (sceneNum === 1) {
       //print("Working-Scene-1");
+      stroke(0, 0, 0);
       textSize(35);
-      text("Level 1", 20, 45)
-      text("Lives: " + Sparkles.lives, 20, 85);
+      text("Level 1", Sparkles.pos.x, 45)
+      text("Lives: " + Sparkles.lives, Sparkles.pos.x, 85);
+      textSize(12);
+      text("SPARKLES", Sparkles.pos.x + 5, Sparkles.pos.y - 75);
     }
       else if (sceneNum === 2) {
       background(0, 255, 0);
@@ -137,7 +168,7 @@ translate(-Sparkles.pos.x + 50, 0);
       text("The objective of the game is to make through all the", 15, 225);
       text("obstacles and get Spakles to the place he loves most.", 15, 240);
       textSize(25);
-      text("Example of Math Problem:", 10, 275);
+      text("Example of a Math Problem:", 10, 275);
       fill(0, 255, 0);
       rect(10, 285, 380, 35);
       fill(0, 0, 0);
