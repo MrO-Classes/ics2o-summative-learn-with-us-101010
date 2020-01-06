@@ -1,9 +1,13 @@
 let img;
 let Sparkles;
+let bonetreat;
+let enemycat;
 
 function setup() {
   createCanvas(600, 400);
   Sparkles = new Character();
+  bonetreat = new Bone();
+  enemycat = new Cat();
 
   img = loadImage('art/SplashScreen.jpg')
 
@@ -30,6 +34,10 @@ translate(-Sparkles.pos.x + 50, 0);
   Sparkles.update();
   Sparkles.edges();
   Sparkles.display();
+    
+  bonetreat.display();
+  
+  enemycat.display();
 
   var gravity = createVector(0, 0.1);
   Sparkles.applyForce(gravity);
@@ -111,19 +119,6 @@ translate(-Sparkles.pos.x + 50, 0);
     fill(255, 255, 255);
     text("BACK", 535, 45);
   }
-  
-   var drawWinBone = function() {
-    fill(255, 255, 255);
-    rect(1150, 75, 75, 15);
-    fill(0, 0, 0);
-    text("BONE", 1150, 75);
-  }
-   
-   var drawEnemyCat = function() {
-    rect(945, height * 0.5, width/10, height * 0.040);
-    fill(0, 0, 0);
-    text("CAT", 945, height * 0.5);
-   }
    
   // FOR LATER
   // var drawExitButton = function() {
@@ -143,6 +138,7 @@ translate(-Sparkles.pos.x + 50, 0);
       text("Lives: " + Sparkles.lives, Sparkles.pos.x, 85);
       textSize(12);
       text("SPARKLES", Sparkles.pos.x + 5, Sparkles.pos.y - 75);
+      //text(mouseX + "," + mouseY, mouseX, mouseY);
     }
       else if (sceneNum === 2) {
       background(0, 255, 0);
