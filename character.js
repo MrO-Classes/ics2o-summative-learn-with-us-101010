@@ -19,38 +19,59 @@ function Character(x, y) {
   this.display = function() {
 
     background(10, 200, 255);
-    
-    //ground
-    fill(255, 0, 0);
-    rect(this.pos.x - 50, height * 0.89, width, height * 2.5);
-    
-    //Walls
-    rect(900, height * 0.6, width/2, height * 5);
-    rect(1050, height * 0.3, width/2, height * 5);
-    
-  if (sceneNum === 1) {
-     drawEnemyCat();
+
+    if (sceneNum === 1) {
+
+      //ground
+      fill(255, 0, 0);
+      rect(this.pos.x - 50, height * 0.89, width, height * 2.5);
+
+      //Walls
+      rect(900, height * 0.6, width / 2, height * 5);
+      rect(1050, height * 0.3, width / 2, height * 5);
+
     }
-    
+
+
     fill(255);
     stroke(255);
     rect(this.pos.x, this.pos.y - 95, 30, 50, 30);
 
-  if (sceneNum === 1) {
-  drawWinBone();
-  }
-    
     if (sceneNum === 1) {
       textSize(20);
-   text("This level moves for you", Sparkles.pos.x, 110);
-   }
+      text("This level moves for you", Sparkles.pos.x, 110);
+      
+      if (this.pos.x == bonetreat.pos.x && this.pos.y > 120 && this.pos.y < 175) {
+        bonetreat.pos.y = -400;
+        //print("WORKING BONE GRAB");
+        //Figure out better way to ask questions.
+        var user_answer1 = prompt("Starting at 0, make a pattern that goes up by 7 each time for 5 terms.");
+        //Better wording???
+         
+         if(user_answer1 == "0, 7, 14, 21, 28" || user_answer1 == "0,7,14,21,28") {
+           alert("That's correct!!! On to the next level.");
+           this.lives++;
+           //setTimeOut()
+         } else {
+           alert("Uh Oh, you got it wrong!");
+           //Restart level
+         }
+      }
+      
+      if (this.pos.x == enemycat.pos.x && this.pos.y > 200 && this.pos.y < 300) {
+        //print("WORKING CAT ATTACK");
+        fill(255, 255, 255);
+        text("OWWWWWWWWWWWWWWWWWWWWWWWWWWW", Sparkles.pos.x, Sparkles.pos.y);
+        this.lives--;
+      }
+    }
 
   }
-  
+
   this.edges = function() {
-      if (this.pos.y > height) {
-        this.vel.y *= -0.5; //-1 for bouncing
-        this.pos.y = height;
-      } 
+    if (this.pos.y > height) {
+      this.vel.y *= -0.5; //-1 for bouncing
+      this.pos.y = height;
     }
+  }
 }
