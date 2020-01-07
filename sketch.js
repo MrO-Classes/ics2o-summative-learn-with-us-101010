@@ -137,7 +137,7 @@ translate(-Sparkles.pos.x + 50, 0);
       text("Level 1", Sparkles.pos.x, 45)
       text("Lives: " + Sparkles.lives, Sparkles.pos.x, 85);
       textSize(12);
-      text("SPARKLES", Sparkles.pos.x + 5, Sparkles.pos.y - 75);
+      text("SPARKLES " + Sparkles.pos.y, Sparkles.pos.x + 5, Sparkles.pos.y - 75);
       //text(mouseX + "," + mouseY, mouseX, mouseY);
     }
       else if (sceneNum === 2) {
