@@ -13,6 +13,7 @@ function setup() {
 
 }
 
+//How you move for the first level
 function keyPressed() {
   if (key == ' ') {
     var jump = createVector(0, -3);
@@ -78,7 +79,7 @@ translate(-Sparkles.pos.x + 50, 0);
   
 }
 
-  //Button Function
+  //Buttons on title screen
   mouseClicked = function() {
     
   //Click to Play/Instructions/Controls/About Us
@@ -137,7 +138,8 @@ translate(-Sparkles.pos.x + 50, 0);
       text("Level 1", Sparkles.pos.x, 45)
       text("Lives: " + Sparkles.lives, Sparkles.pos.x, 85);
       textSize(12);
-      text("SPARKLES " + Sparkles.pos.y, Sparkles.pos.x + 5, Sparkles.pos.y - 75);
+      print(Sparkles.pos.y);
+      text("SPARKLES " + Sparkles.pos.y + " " + Sparkles.pos.x, Sparkles.pos.x + 5, Sparkles.pos.y - 75);
       //text(mouseX + "," + mouseY, mouseX, mouseY);
     }
       else if (sceneNum === 2) {
@@ -178,6 +180,19 @@ translate(-Sparkles.pos.x + 50, 0);
       fill(0, 0, 0);
       textSize(60);
       text("Controls", 10, 75);
+      fill(255, 255, 255);
+      rect(50, 95, 50, 50);
+      rect(50, 175, 50, 50);
+      rect(50, 255, 50, 50);
+      rect(50, 335, 50, 50);
+      rect(250, 95, 250, 50);
+        
+      fill(0, 0, 0);
+      text("-", 365, 135);
+      textSize(15);
+      text("(Space)", 525, 110);
+      text("To Jump", 525, 135);
+      
     }
       else if (sceneNum === 4) {
       background(255, 255, 255);
@@ -186,6 +201,8 @@ translate(-Sparkles.pos.x + 50, 0);
       fill(0, 0, 0);
       textSize(60);
       text("About Us", 10, 75);
+      textSize(15);
+      text("Soon to come", 20, 20);
     }
   }
   
