@@ -75,7 +75,7 @@ function Character(x, y) {
       this.vel.y *= -0.5; //-1 for bouncing
       this.pos.y = height;
       
-      if(sceneNum == 1 && this.pos.x >= 870 && this.pos.x <= 880 && this.pos.y < 500) {
+      if(sceneNum == 1 && this.pos.x <= 870 && this.pos.x >= 1050 && this.pos.y >= 400) {
         this.vel.x *= 0; 
       } else if (sceneNum == 1 && this.pos.x == 1000&&this.pos.y<100){
         this.vel.x *= 0; 
