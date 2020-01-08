@@ -41,6 +41,7 @@ function Character(x, y) {
       textSize(20);
       text("This level moves for you", Sparkles.pos.x, 110);
       
+      //Question
       if (this.pos.x == bonetreat.pos.x && this.pos.y > 120 && this.pos.y < 175) {
         bonetreat.pos.y = -400;
         //print("WORKING BONE GRAB");
@@ -48,20 +49,21 @@ function Character(x, y) {
         var user_answer1 = prompt("Starting at 0, make a pattern that goes up by 7 each time for 5 terms.");
         //Better wording???
          
+        //You Eat The Bone
          if(user_answer1 == "0, 7, 14, 21, 28" || user_answer1 == "0,7,14,21,28") {
            alert("That's correct!!! On to the next level.");
            this.lives++;
            //setTimeOut()
          } else {
            alert("Uh Oh, you got it wrong!");
-           //Restart level
          }
       }
       
-      if (this.pos.x == enemycat.pos.x && this.pos.y > 200 && this.pos.y < 300) {
+      //Cat Attacks You
+      if (this.pos.x == enemycat.pos.x && this.pos.y > 200 && this.pos.y < 325) {
         //print("WORKING CAT ATTACK");
         fill(255, 255, 255);
-        text("OWWWWWWWWWWWWWWWWWWWWWWWWWWW", Sparkles.pos.x, Sparkles.pos.y);
+        text("OW", Sparkles.pos.x, Sparkles.pos.y);
         this.lives--;
       }
     }
@@ -69,9 +71,17 @@ function Character(x, y) {
   }
 
   this.edges = function() {
-    if (this.pos.y > height) {
+    if (sceneNum == 1 && this.pos.y > height) {
       this.vel.y *= -0.5; //-1 for bouncing
       this.pos.y = height;
+      
+      if(sceneNum == 1 && this.pos.x >= 870 && this.pos.x <= 880 && this.pos.y < 500) {
+        this.vel.x *= 0; 
+      } else if (sceneNum == 1 && this.pos.x == 1000&&this.pos.y<100){
+        this.vel.x *= 0; 
+      }else{
+        this.vel.x=1;
+      }
     }
   }
 }
