@@ -35,9 +35,14 @@ translate(-Sparkles.pos.x + 50, 0);
   Sparkles.update();
   Sparkles.edges();
   Sparkles.display();
-    
+  
+  bonetreat.pos.x = 1150;
+  bonetreat.pos.y = 75;
   bonetreat.display();
   
+    
+  enemycat.pos.x = 945; 
+  enemycat.pos.y = height * 0.5;
   enemycat.display();
 
   var gravity = createVector(0, 0.1);
@@ -85,7 +90,7 @@ translate(-Sparkles.pos.x + 50, 0);
   //Click to Play/Instructions/Controls/About Us
   if (mouseX >= 185 && mouseX <= 410 && mouseY >= 200 && mouseY <= 250 && sceneNum == 0) {
     //print("Working-Click-to-Play");
-    sceneNum = 1;
+    sceneNum = 1; //Level 1
     
   } 
     else if (mouseX >= 410 && mouseX <= 560 && mouseY >= 300 && mouseY <= 350 && sceneNum == 0) {
@@ -120,6 +125,13 @@ translate(-Sparkles.pos.x + 50, 0);
     fill(255, 255, 255);
     text("BACK", 535, 45);
   }
+  
+  var drawbacktoMainScreenbtn = function() {
+    textSize(15);
+    rect(525, 25, 55, 30);
+    fill(255, 255, 255);
+    text("Back to Main Menu", 535, 45);
+  }
    
   // FOR LATER
   // var drawExitButton = function() {
@@ -131,18 +143,20 @@ translate(-Sparkles.pos.x + 50, 0);
   
   //To draw scenes - Click to Play/Instructions/Controls/About Us
   var drawScene = function() {
-    if (sceneNum === 1) {
+    if (sceneNum === 1) { 
+      //level 1
       //print("Working-Scene-1");
       stroke(0, 0, 0);
       textSize(35);
       text("Level 1", Sparkles.pos.x, 45)
       text("Lives: " + Sparkles.lives, Sparkles.pos.x, 85);
       textSize(12);
-      print(Sparkles.pos.y);
-      text("SPARKLES " + Sparkles.pos.y + " " + Sparkles.pos.x, Sparkles.pos.x + 5, Sparkles.pos.y - 75);
+      //print(Sparkles.pos.y);
+      text("SPARKLES " + Sparkles.pos.y, Sparkles.pos.x + 5, Sparkles.pos.y - 75);
       //text(mouseX + "," + mouseY, mouseX, mouseY);
     }
       else if (sceneNum === 2) {
+      //instructions
       background(0, 255, 0);
       //print("Working-Scene-2");
       drawBackButton();
@@ -172,8 +186,10 @@ translate(-Sparkles.pos.x + 50, 0);
       fill(0, 0, 0);
       textSize(16);
       text("' 2, 8, 12, 16, 20... ' What does the pattern go up by?", 15, 305);
+        
     }
       else if (sceneNum === 3) {
+      //controls
       background(0, 0, 255);
       //print("Working-Scene-3");
       drawBackButton();
@@ -195,6 +211,7 @@ translate(-Sparkles.pos.x + 50, 0);
       
     }
       else if (sceneNum === 4) {
+      //about us
       background(255, 255, 255);
       //print("Working-Scene-4");
       drawBackButton();
@@ -203,6 +220,21 @@ translate(-Sparkles.pos.x + 50, 0);
       text("About Us", 10, 75);
       textSize(15);
       text("Soon to come", 20, 20);
+    } 
+      else if(sceneNum === 5) {
+      //level '3'
+      background(100, 100, 100);
+      stroke(0, 0, 0);
+      textSize(35);
+      text("Level 3", Sparkles.pos.x, 45)
+      text("Lives: " + Sparkles.lives, Sparkles.pos.x, 85);
+    }
+     else if(Sparkles.lives === 0) {
+     //death screen
+     background(200, 50, 10);
+     textSize(30);
+     text("You lost all your lives!", 200, 100);
+     drawbacktoMainScreenbtn();
+       
     }
   }
-  
