@@ -41,8 +41,10 @@ function Character(x, y) {
       textSize(20);
       text("This level moves for you", Sparkles.pos.x, 110);
       
-      //Question
+    }
+ //Question
       if (this.pos.x == bonetreat.pos.x && this.pos.y > 120 && this.pos.y < 175) {
+        //print("true");
         bonetreat.pos.y = -400;
         //print("WORKING BONE GRAB");
         //Figure out better way to ask questions.
@@ -54,6 +56,8 @@ function Character(x, y) {
            alert("That's correct!!! On to the next level.");
            this.lives++;
            //setTimeOut()
+           sceneNum = 5; //Level 3
+           //Switch out with real level 2
          } else {
            alert("Uh Oh, you got it wrong!");
          }
@@ -68,20 +72,19 @@ function Character(x, y) {
       }
     }
 
-  }
+      
 
   this.edges = function() {
     if (sceneNum == 1 && this.pos.y > height) {
       this.vel.y *= -0.5; //-1 for bouncing
       this.pos.y = height;
-      
-      if(sceneNum == 1 && this.pos.x <= 870 && this.pos.x >= 1050 && this.pos.y >= 400) {
+    }
+      if(sceneNum == 1 && this.pos.x >= 870 && this.pos.x <= 1050 && this.pos.y <= 400 && this.pos.y >= 270) {
         this.vel.x *= 0; 
-      } else if (sceneNum == 1 && this.pos.x == 1000&&this.pos.y<100){
-        this.vel.x *= 0; 
+      // } else if (sceneNum == 1){
+      //   this.vel.x = 1; 
       }else{
         this.vel.x=1;
       }
     }
   }
-}
