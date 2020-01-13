@@ -1,4 +1,4 @@
-function Character(x, y) {
+ function Character(x, y) {
   this.pos = createVector(50, height);
   this.vel = createVector(1, 0);
   this.acc = createVector(0, 0);
@@ -76,13 +76,18 @@ function Character(x, y) {
 
   this.edges = function() {
     if (sceneNum == 1 && this.pos.y > height) {
-      this.vel.y *= -0.5; //-1 for bouncing
+      this.vel.y *= 0; //-1 for bouncing
       this.pos.y = height;
+      print(Sparkles.pos.x);
     }
       if(sceneNum == 1 && this.pos.x >= 870 && this.pos.x <= 1050 && this.pos.y <= 400 && this.pos.y >= 270) {
         this.vel.x *= 0; 
       // } else if (sceneNum == 1){
       //   this.vel.x = 1; 
+      } else if(this.pos.x >= 870 && this.pos.y >= 270) {
+        this.pos.y = 270;
+        this.vel.x = 1;
+        this.vel.y *= -0.5; //-1 for bouncing
       }else{
         this.vel.x=1;
       }
