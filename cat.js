@@ -1,12 +1,11 @@
-function Cat (x, y) {
-  this.pos = createVector(945, height * 0.5);
+function Cat (x, y, pic) {
+  this.pos = createVector(x, y);
   
   this.display = function() {
     
-    rect(945, height * 0.5, width/10, height * 0.040);
+    //rect(945, height * 0.5, width/10, height * 0.040);
     fill(0, 0, 0);
-    text("CAT", 945, height * 0.5);
-    
-  }
+    image(pic, this.pos.x, this.pos.y, 75, 40);
+  };
   
 }
