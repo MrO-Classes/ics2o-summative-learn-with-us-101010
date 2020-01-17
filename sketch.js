@@ -3,17 +3,23 @@ let Sparkles;
 let bonetreat;
 let enemycat;
 var sceneNum = 0;
-
+let imgbone;
+let imgcat;
+let imgsparkles;
 
 function setup() {
+  
+  img = loadImage('art/SplashScreen.jpg');
+  imgbone = loadImage('art/winbone.png');
+  imgcat = loadImage('art/enemyCat.png');
+  imgsparkles = loadImage('art/Sparkles.png');
+  
   createCanvas(600, 400);
-  Sparkles = new Character();
-  bonetreat = new Bone();
-  enemycat = new Cat();
-
-  img = loadImage('art/SplashScreen.jpg')
-
+  Sparkles = new Character(50, height, imgsparkles);
+  bonetreat = new Bone(1150, 75, imgbone);
+  enemycat = new Cat(945, height * 0.5, imgcat);
 }
+
 
 //How you move for the first level
 function keyPressed() {
@@ -25,13 +31,13 @@ function keyPressed() {
 }
 
 function draw() {
-  background(255, 0, 125);
+background(255, 0, 125);
 
   if (sceneNum === 0) {
     image(img, 172, 25, 250, 150);
   }
 
-  if (sceneNum === 1) {
+  if (sceneNum === 1 || sceneNum === 5) {
     translate(-Sparkles.pos.x + 50, 0);
 
     Sparkles.update();
@@ -39,8 +45,8 @@ function draw() {
     sceneNum=Sparkles.display(sceneNum);
     print(sceneNum);
 
-    bonetreat.pos.x = 1150;
-    bonetreat.pos.y = 75;
+    //bonetreat.pos.x = 1150;
+    //bonetreat.pos.y = 75;
     bonetreat.display();
 
 
@@ -124,11 +130,11 @@ var drawBackButton = function() {
   text("BACK", 535, 45);
 }
 
-var drawbacktoMainScreenbtn = function() {
+var drawMainScreenbtn = function() {
   textSize(15);
-  rect(525, 25, 55, 30);
+  rect(200, 200, 175, 30);
   fill(255, 255, 255);
-  text("Back to Main Menu", 535, 45);
+  text("Back to Main Menu", 220, 220);
 }
 
 // FOR LATER
@@ -150,7 +156,7 @@ var drawScene = function() {
     text("Lives: " + Sparkles.lives, Sparkles.pos.x, 85);
     textSize(12);
     //print(Sparkles.pos.y);
-    text("SPARKLES " + Sparkles.pos.y, Sparkles.pos.x + 5, Sparkles.pos.y - 75);
+    //text("SPARKLES " + Sparkles.pos.y, Sparkles.pos.x + 5, Sparkles.pos.y - 75);
     //text(mouseX + "," + mouseY, mouseX, mouseY);
   } else if (sceneNum === 2) {
     //instructions
@@ -223,14 +229,24 @@ var drawScene = function() {
     background(0, 100, 100);
     stroke(200, 200, 200);
     textSize(35);
-    text("Level 3", Sparkles.pos.x, 45)
+    fill(255, 0, 0);
+    rect(550, 100, 10, 10);
+    fill(0, 0, 0);
+    text("Level 3", Sparkles.pos.x, 45);
     text("Lives: " + Sparkles.lives, Sparkles.pos.x, 85);
-  } else if (Sparkles.lives === 0) {
+  } else if (sceneNum === 6) {
     //death screen
     background(200, 50, 10);
     textSize(30);
-    text("You lost all your lives!", 200, 100);
-    drawbacktoMainScreenbtn();
-
+    text("You lost all your lives!", 150, 100);
+    textSize(20);
+    text("Press the button to go to the main menu.", 130, 150);
+    drawMainScreenbtn();
+    mouseClicked = function(){
+      if(sceneNum === 6 && mouseX >= 200 && mouseX <= 250 && mouseY >= 200 && mouseY <= 255) {
+    sceneNum = 0;
+    //Need better perameters for button
+  }
+    }
   }
 }
