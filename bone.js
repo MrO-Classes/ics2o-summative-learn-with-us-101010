@@ -1,12 +1,13 @@
-function Bone (x, y) {
-  this.pos = createVector(1150, 75);
+
+function Bone (x, y, pic) {
+  this.pos = createVector(x, y);
+  //imgbone = loadImage('art/winbone.jpg');
   
   this.display = function() {
     
     fill(255, 255, 255);
-    rect(this.pos.x, this.pos.y, 75, 15);
-    fill(0, 0, 0);
-    text("BONE", 1150, 75);
+    image(pic, this.pos.x, this.pos.y, 75, 30);
+    //rect(this.pos.x, this.pos.y, 75, 15);
     
   }
   
