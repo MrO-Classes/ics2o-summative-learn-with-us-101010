@@ -1,4 +1,4 @@
- function Character(x, y) {
+function Character(x, y, pic) {
    this.pos = createVector(50, height);
    this.vel = createVector(1, 0);
    this.acc = createVector(0, 0);
@@ -17,6 +17,7 @@
    }
 
    this.display = function(sceneNum) {
+     
 
      background(10, 200, 255);
 
@@ -29,19 +30,31 @@
        //Walls
        rect(900, height * 0.6, width / 2, height * 5);
        rect(1050, height * 0.3, width / 2, height * 5);
+       
+       if(sceneNum === 1 && this.pos.x == 1350) {
+         this.pos.x = 50;
+         this.lives--;
+         //Program.restart();
+       }
 
      }
 
 
      fill(255);
      stroke(255);
-     rect(this.pos.x, this.pos.y - 95, 30, 50, 30);
+     image(pic, this.pos.x, this.pos.y - 95, 90, 50);
+     //rect(this.pos.x, this.pos.y - 95, 30, 50, 30);
 
      if (sceneNum === 1) {
        textSize(20);
        text("This level moves for you", Sparkles.pos.x, 110);
 
      }
+     
+     //if(sceneNum == 2) {
+     //  image(pic, 350, 200);
+     //}
+     
      //Question
      if (this.pos.x == bonetreat.pos.x && this.pos.y > 120 && this.pos.y < 175) {
        //print("true");
@@ -60,17 +73,22 @@
          //Switch out with real level 2
        } else {
          alert("Uh Oh, you got it wrong!");
+         this.pos.x = 50;
+         this.lives--;
        }
      }
 
      //Cat Attacks You
      if (this.pos.x == enemycat.pos.x && this.pos.y > 200 && this.pos.y < 325) {
        //print("WORKING CAT ATTACK");
-       fill(255, 255, 255);
+       fill(0, 0, 0);
        text("OW", Sparkles.pos.x, Sparkles.pos.y);
-       this.lives--;
+       this.lives-=3;
      }
-     return sceneNum
+     if(this.lives <= 0){
+       sceneNum=6;
+     }
+     return sceneNum;
    }
 
 
