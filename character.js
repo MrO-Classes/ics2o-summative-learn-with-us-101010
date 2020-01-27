@@ -83,7 +83,7 @@ function Character(x, y, pic) {
        //print("WORKING CAT ATTACK");
        fill(0, 0, 0);
        text("OW", Sparkles.pos.x, Sparkles.pos.y);
-       this.lives-=3;
+       this.lives-=1;
      }
      if(this.lives <= 0){
        sceneNum=6;
